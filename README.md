@@ -1,10 +1,10 @@
 ## dishes-form
 
 This is a simple form aplication. Learn how to run it below.
+LIVE DEMO: https://dishes-form.vercel.app/
 
-## Getting Started
+## Run the project
 
-First, run the development server:
 
 ```bash
 npm run dev
