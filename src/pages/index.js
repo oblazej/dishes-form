@@ -1,12 +1,15 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import Form from '../components/form/Form';
+import Notification from '../components/Notification';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
 
 export default function Home() {
+
+  const [message, setMessage] = useState("");
+
   const submit = values => {
-    // print the form values to the console
-    console.log(values)
     const body = {"name": values.name, "preparation_time": `${values.hours}:${values.minutes}:${values.seconds}`,
                   "type": values.type};
     switch(values.type) {
@@ -23,10 +26,14 @@ export default function Home() {
       default:
         return;
     }
-    console.log(body)
+
     axios.post("https://frosty-wood-6558.getsandbox.com:443/dishes", body).then(response => {
       console.log(response.data)
-    })
+      setMessage("Success!");
+    })        .catch((err) => {
+
+      setMessage(`Error: ${JSON.stringify(err.response.data)}`);
+  })
   }
   return (
     <div>
@@ -34,10 +41,11 @@ export default function Home() {
         <title>Dishes Form</title>
         <meta name="description" content="Dishes Form"/>
       </Head>
-
       <main className={styles.main}>
         <h1 className={styles.header}>dish form</h1>
-        <Form onSubmit={submit}/>
+        <Form onSubmit={submit}>
+        <Notification message={message}/>
+        </Form>
       </main>
 
     </div>
