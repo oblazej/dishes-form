@@ -1,0 +1,10 @@
+.container {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.input {
+    border: none;
+    width: 40px;
+}
