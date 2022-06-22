@@ -3,7 +3,7 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import styles from '../../styles/Form.module.css';
 
 function Form(props) {
-    const { handleSubmit, type, spicinessScale } = props;
+    const { handleSubmit, reset, type, spicinessScale } = props;
 
     const handleValueSelection = (event) => {
         const target = event.currentTarget;
@@ -24,8 +24,9 @@ function Form(props) {
         return val.length > 2 ? val.substring(0, 2) : val;
     }
 
-return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    return (
+        <form className={styles.form} onSubmit={handleSubmit}>
+                        {props.children}
             <label htmlFor="name">Name:</label>
             <Field className={styles.input} name="name" component="input" type="text" required />
             <label htmlFor="preparationTime">Preparation time:</label>
@@ -34,7 +35,7 @@ return (
                     type="number" min="0" max="99" step="1" onFocus={handleValueSelection} required />:
                 <Field className={styles["duration-input"]} name="minutes" component="input" format={(val) => durationInputFormat(val, 59)} type="number" min="0" max="59" step="1" onFocus={handleValueSelection} required />:
                 <Field className={styles["duration-input"]} name="seconds" component="input" format={(val) => durationInputFormat(val, 59)} type="number" min="0" max="59" step="1" onFocus={handleValueSelection} required />
-        </div>
+            </div>
             <label htmlFor="type">Dish type:</label>
             <Field className={styles.input} name="type" component="select" required>
                 <option value="def" disabled>select dish type</option>
@@ -42,23 +43,26 @@ return (
                 <option value="soup">soup</option>
                 <option value="sandwich">sandwich</option>
             </Field>
-        {type === "pizza" && <>
-            <label htmlFor="noOfSlices">Number of slices</label>
-            <Field className={styles.input} name="noOfSlices" component="input" type="number" min="1" step="1" required />
-            <label htmlFor="diameter">Diameter</label>
-            <Field className={styles.input} name="diameter" component="input" type="number" min="1" step="0.1" required />
-        </>}
-        {type === "soup" && <>
-            <label htmlFor="spicinessScale">Spiciness scale:</label>
-            <div><Field className={styles.input} name="spicinessScale" component="input" type="range" min="1" max="10" step="1" required /> {spicinessScale || 5}</div>
-        </>}
-        {type === "sandwich" && <>
-            <label htmlFor="slicesOfBread">Slices of bread:</label>
-            <Field className={styles.input} name="slicesOfBread" component="input" type="number" min="1" required />
-        </>}
-        <button type="submit">Submit</button>
-    </form>
-);
+            {type === "pizza" && <>
+                <label htmlFor="noOfSlices">Number of slices:</label>
+                <Field className={styles.input} name="noOfSlices" component="input" type="number" min="1" step="1" required />
+                <label htmlFor="diameter">Diameter:</label>
+                <Field className={styles.input} name="diameter" component="input" type="number" min="1" step="0.1" required />
+            </>}
+            {type === "soup" && <>
+                <label htmlFor="spicinessScale">Spiciness scale:</label>
+                <div className={styles.spice}>{spicinessScale || 5}</div>
+                <Field className={styles.input} name="spicinessScale" component="input" type="range" min="1" max="10" step="1" required />
+            </>}
+            {type === "sandwich" && <>
+                <label htmlFor="slicesOfBread">Slices of bread:</label>
+                <Field className={styles.input} name="slicesOfBread" component="input" type="number" min="1" required />
+            </>}
+            <button className={styles.button} type="submit">Submit</button> <button className={styles.button} type="button" onClick={reset}>
+          Clear Values
+        </button>
+        </form>
+    );
 }
 
 Form = reduxForm({
