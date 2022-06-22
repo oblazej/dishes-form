@@ -29,13 +29,14 @@ export default function Home() {
     })
   }
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Dishes Form</title>
         <meta name="description" content="Dishes Form"/>
       </Head>
 
       <main className={styles.main}>
+        <h1 className={styles.header}>dish form</h1>
         <Form onSubmit={submit}/>
       </main>
 
