@@ -1,0 +1,38 @@
+.duration-container {
+    border: 1px dotted black;
+    border-radius: 5%;
+    background-color: white;
+    margin: 0.5rem;
+    font-size: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem 2rem;
+}
+
+.duration-input {
+    border: none;
+    width: 40px;
+}
+
+.form {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 4rem;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    font-size: 1.5rem;
+    width: 25vw;
+    -webkit-box-shadow: inset 0px 0px 50px -33px rgba(0, 107, 153, 1);
+    -moz-box-shadow: inset 0px 0px 50px -33px rgba(0, 107, 153, 1);
+    box-shadow: inset 0px 0px 50px -33px rgb(6, 180, 255);
+}
+
+.input {
+    border: 1px dotted black;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 15vw;
+}

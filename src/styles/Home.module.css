@@ -1,0 +1,17 @@
+.main {
+    background-color: rgba(105, 221, 237, 1);
+    background-image: radial-gradient(circle, rgba(105, 221, 237, 1) 0%, rgba(251, 220, 251, 1) 100%);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+}
+
+.header {
+    text-decoration: overline;
+    font-size: 3rem;
+    color: rgb(52, 67, 89);
+}
